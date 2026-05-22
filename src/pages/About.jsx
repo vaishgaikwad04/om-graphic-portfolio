@@ -5,7 +5,7 @@ const About = () => {
   return (
     <section
       id="about"
-      className="bg-[#1e293b] text-white overflow-hidden"
+      className="bg-gray-400 text-white overflow-hidden"
     >
       {/* HERO SECTION */}
       <div className="relative min-h-screen flex flex-col justify-center px-5 sm:px-6 lg:px-16 xl:px-24 py-20">
@@ -82,20 +82,7 @@ const About = () => {
               />
             </div>
 
-            {/* FLOATING CARD */}
-            <div className="absolute bottom-4 left-4 lg:-left-10 bg-[#181818]/90 border border-gray-600 p-4 sm:p-5 backdrop-blur-xl max-w-[240px] rounded-xl">
-              <p className="text-xs uppercase tracking-[0.25em] text-white/60">
-                Experience
-              </p>
-
-              <h2 className="text-3xl sm:text-4xl font-black mt-2 text-white">
-                2+
-              </h2>
-
-              <p className="text-sm text-white/70 mt-2 leading-relaxed">
-                Years creating visual stories & digital experiences.
-              </p>
-            </div>
+           
           </motion.div>
         </div>
       </div>

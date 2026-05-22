@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 const Work = () => {
   const [selectedImage, setSelectedImage] = useState(null);
 
   const projects = [
-  
     {
       name: "Oscar Pizza",
       type: "Reels Editing",
@@ -29,32 +28,63 @@ const Work = () => {
     },
   ];
 
+  // AUTO PLAY ON SCROLL
+  const videoRefs = useRef([]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const video = entry.target;
+
+          if (entry.isIntersecting) {
+            video.play();
+          } else {
+            video.pause();
+          }
+        });
+      },
+      { threshold: 0.6 }
+    );
+
+    videoRefs.current.forEach((video) => {
+      if (video) observer.observe(video);
+    });
+
+    return () => {
+      videoRefs.current.forEach((video) => {
+        if (video) observer.unobserve(video);
+      });
+    };
+  }, []);
+
   return (
     <div
       id="work"
-      className="min-h-screen bg-linear-gradient(180deg, #0f1d5f 0%, #1e293b 100%) text-white px-6 md:px-24 py-24"
+      className="min-h-screen bg-gray-200 text-black px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24 py-16 lg:py-24 overflow-hidden"
     >
       {/* HEADER */}
-      <div className="mb-20 animate-fade-down">
-        <p className="text-black/40 tracking-[0.3em] uppercase text-sm">
+      <div className="mb-12 lg:mb-16 animate-fade-down">
+        <p className="text-black/80 tracking-[0.25em] uppercase text-[11px] sm:text-xs">
           Selected Work
         </p>
 
-        <h1 className="text-2xl sm:text-4xl md:text-6xl font-extrabold mt-4 animate-soft-glow text-gray-400">
-         Recent Work
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold mt-3 text-gray-500 leading-tight">
+          Recent Work
         </h1>
       </div>
 
       {/* GRID */}
-      <div className="columns-1 md:columns-2 gap-5 md:gap-8 space-y-5 md:space-y-8">
+      <div className="columns-1 md:columns-2 gap-5 lg:gap-8 space-y-5 lg:space-y-8">
         {projects.map((project, index) => (
           <div
             key={index}
             style={{ animationDelay: `${index * 120}ms` }}
             className="
               break-inside-avoid group relative overflow-hidden
-              rounded-[32px] bg-white/5 backdrop-blur-md
-              border border-white/10 mb-8
+              rounded-[24px] lg:rounded-[32px]
+              bg-white/5 backdrop-blur-md
+              border border-white/10 mb-5 lg:mb-8
               animate-card-in
               transition-all duration-700
               hover:-translate-y-2 hover:scale-[1.01]
@@ -67,31 +97,44 @@ const Work = () => {
                   src={project.src}
                   alt={project.name}
                   onClick={() => setSelectedImage(project.src)}
-                  className={`
-                    w-full cursor-pointer object-cover transition-all duration-700 ease-out
-                    group-hover:scale-[1.06]
-                 h-[420px] sm:h-[520px] md:h-[700px] lg:h-[860px]
-                  `}
+                  className="
+                    w-full cursor-pointer object-cover
+                    transition-all duration-700 ease-out
+                    group-hover:scale-[1.05]
+                    h-[420px] sm:h-[520px] md:h-[620px] lg:h-[700px]
+                  "
                 />
               ) : (
                 <video
-                  controls
-                  playsInline
-                  poster={project.poster}
-                  className={`
-                    w-full object-cover bg-black
-                    transition-all duration-700 ease-out
-                    group-hover:brightness-110 group-hover:scale-[1.02]
-                   h-[420px] sm:h-[520px] md:h-[650px] lg:h-[760px]
-                  `}
-                >
-                  <source src={project.src} type="video/mp4" />
-                </video>
+  ref={(el) => (videoRefs.current[index] = el)}
+  loop
+  playsInline
+  controls
+  poster={project.poster}
+  onClick={(e) => {
+    e.target.muted = false;
+  }}
+  className="
+    w-full object-cover bg-black
+    transition-all duration-700 ease-out
+    group-hover:brightness-110
+    group-hover:scale-[1.02]
+    h-[420px] sm:h-[520px] md:h-[620px] lg:h-[700px]
+  "
+></video>
               )}
             </div>
 
-            {/* OVERLAY */}
-            <div className="absolute bottom-0 left-0 p-4 sm:p-6 md:p-8 opacity-0 translate-y-6 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500" />
+            {/* TEXT OVERLAY */}
+            <div className="absolute bottom-0 left-0 w-full p-4 sm:p-6 bg-gradient-to-t from-black/80 to-transparent">
+              <h2 className="text-lg sm:text-xl lg:text-2xl font-bold">
+                {project.name}
+              </h2>
+
+              <p className="text-white/70 text-sm sm:text-base mt-1">
+                {project.type}
+              </p>
+            </div>
           </div>
         ))}
       </div>
@@ -100,7 +143,7 @@ const Work = () => {
       {selectedImage && (
         <div
           onClick={() => setSelectedImage(null)}
-          className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-6 animate-fade-in"
+          className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-4 sm:p-6 animate-fade-in"
         >
           <img
             src={selectedImage}
@@ -110,7 +153,7 @@ const Work = () => {
 
           <button
             onClick={() => setSelectedImage(null)}
-            className="absolute top-6 right-6 text-white text-4xl hover:scale-125 transition"
+            className="absolute top-5 right-5 text-white text-3xl sm:text-4xl hover:scale-125 transition"
           >
             ×
           </button>
@@ -133,10 +176,6 @@ const Work = () => {
 
         .animate-zoom {
           animation: zoom 0.4s ease-out both;
-        }
-
-        .animate-soft-glow {
-          animation: softGlow 3s ease-in-out infinite alternate;
         }
 
         @keyframes cardIn {
@@ -162,18 +201,23 @@ const Work = () => {
         }
 
         @keyframes fadeIn {
-          from { opacity: 0; }
-          to { opacity: 1; }
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
         }
 
         @keyframes zoom {
-          from { transform: scale(0.9); opacity: 0; }
-          to { transform: scale(1); opacity: 1; }
-        }
-
-        @keyframes softGlow {
-          0% { opacity: 0.8; }
-          100% { opacity: 1; }
+          from {
+            transform: scale(0.9);
+            opacity: 0;
+          }
+          to {
+            transform: scale(1);
+            opacity: 1;
+          }
         }
       `}</style>
     </div>
