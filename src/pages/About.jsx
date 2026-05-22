@@ -78,7 +78,7 @@ const About = () => {
               <img
                 src="/me.jpg"
                 alt="Om Gaikwad"
-                className="w-full h-[55vh] sm:h-[65vh] lg:h-[75vh] xl:h-[80vh] object-cover grayscale hover:grayscale-0 transition duration-700"
+                className="w-full h-[55vh] sm:h-[65vh] lg:h-[75vh] xl:h-[80vh] object-cover  hover:grayscale-0 transition duration-700"
               />
             </div>
 
