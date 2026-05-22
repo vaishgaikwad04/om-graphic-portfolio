@@ -32,31 +32,38 @@ const Work = () => {
   const videoRefs = useRef([]);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          const video = entry.target;
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        const currentVideo = entry.target;
 
-          if (entry.isIntersecting) {
-            video.play();
-          } else {
-            video.pause();
-          }
-        });
-      },
-      { threshold: 0.6 }
-    );
+        if (entry.isIntersecting) {
+          // pause all other videos
+          videoRefs.current.forEach((video) => {
+            if (video && video !== currentVideo) {
+              video.pause();
+            }
+          });
 
-    videoRefs.current.forEach((video) => {
-      if (video) observer.observe(video);
-    });
-
-    return () => {
-      videoRefs.current.forEach((video) => {
-        if (video) observer.unobserve(video);
+          currentVideo.play().catch(() => {});
+        } else {
+          currentVideo.pause();
+        }
       });
-    };
-  }, []);
+    },
+    { threshold: 0.7 }
+  );
+
+  videoRefs.current.forEach((video) => {
+    if (video) observer.observe(video);
+  });
+
+  return () => {
+    videoRefs.current.forEach((video) => {
+      if (video) observer.unobserve(video);
+    });
+  };
+}, []);
 
   return (
     <div
@@ -105,7 +112,7 @@ const Work = () => {
                   "
                 />
               ) : (
-                <video
+               <video
   ref={(el) => (videoRefs.current[index] = el)}
   loop
   playsInline
@@ -121,7 +128,9 @@ const Work = () => {
     group-hover:scale-[1.02]
     h-[420px] sm:h-[520px] md:h-[620px] lg:h-[700px]
   "
-></video>
+>
+  <source src={project.src} type="video/mp4" />
+</video>
               )}
             </div>
 
