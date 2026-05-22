@@ -53,7 +53,7 @@ const Home = () => {
         >
           <button
             onClick={() => setMenuOpen(false)}
-            className="absolute top-6 right-6 text-3xl text-white z-[120]"
+            className="absolute top-6 right-6 text-3xl text-white"
           >
             <HiX />
           </button>
@@ -71,15 +71,12 @@ const Home = () => {
         </motion.div>
       )}
 
-      {/* LEFT TEXT */}
-      
-
       {/* BACKGROUND TEXT */}
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
-        whileInView={{ opacity: 0.1, scale: 1 }}
+        whileInView={{ opacity: 0.08, scale: 1 }}
         transition={{ duration: 1.5 }}
-        className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 text-white opacity-10 font-extrabold tracking-widest text-[70px] sm:text-[100px] md:text-[120px] lg:text-[140px]"
+        className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 text-white font-extrabold tracking-widest text-[60px] sm:text-[80px] md:text-[100px] lg:text-[115px] xl:text-[125px] z-0"
       >
         DESIGN
       </motion.div>
@@ -90,10 +87,12 @@ const Home = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 1.2 }}
-        className="text-white tracking-tight text-center text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-extrabold z-10 px-4 leading-[0.9]"
+        className="relative z-20 text-white tracking-tight text-center 
+        text-5xl sm:text-6xl md:text-7xl lg:text-[90px] xl:text-[105px]
+        font-extrabold px-4 leading-[0.92]"
       >
         Creative <br />
-        <span className="font-light text-4xl sm:text-5xl md:text-6xl lg:text-7xl italic">
+        <span className="font-light text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl italic">
           Visual
         </span>{" "}
         Designer
@@ -105,10 +104,21 @@ const Home = () => {
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 1.2 }}
-        className="absolute bottom-0 right-0 sm:right-6 md:right-10 translate-y-2 md:translate-y-4"
+        className="absolute bottom-0 right-0 md:right-6 lg:right-10 z-10"
       >
         <img
-          className="w-[260px] sm:w-[340px] md:w-[500px] lg:w-[700px] xl:w-[780px] object-cover rounded-xl hover:scale-105 transition duration-700"
+          className="
+          w-[250px]
+          sm:w-[320px]
+          md:w-[430px]
+          lg:w-[560px]
+          xl:w-[650px]
+          2xl:w-[720px]
+          object-contain
+          opacity-80
+          hover:scale-105
+          transition duration-700
+          "
           src="./profile.png"
           alt="designer visual"
         />

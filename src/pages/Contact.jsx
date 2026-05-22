@@ -10,7 +10,7 @@ const Contact = () => {
       <div className="max-w-3xl w-full text-center animate-container">
 
         {/* Heading */}
-        <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-tight animate-title">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-tight animate-title">
           Let’s Work Together
         </h1>
 
