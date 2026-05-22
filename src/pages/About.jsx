@@ -1,209 +1,379 @@
 import React from "react";
 import { motion } from "framer-motion";
 
+const fadeUp = {
+  hidden: { opacity: 0, y: 80 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 1,
+      ease: "easeOut",
+    },
+  },
+};
+
+const slideLeft = {
+  hidden: { opacity: 0, x: 120 },
+  show: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 1.2,
+      ease: "easeOut",
+    },
+  },
+};
+
 const About = () => {
   return (
     <section
       id="about"
-      className="bg-gray-400 text-white overflow-hidden"
+      className="relative overflow-hidden bg-gray-500 text-white"
     >
+      {/* BACKGROUND GLOW */}
+      <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-gray-500 rounded-full"></div>
+
+      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-gray-500 rounded-full"></div>
+
       {/* HERO SECTION */}
-      <div className="relative min-h-screen flex flex-col justify-center px-5 sm:px-6 lg:px-16 xl:px-24 py-20">
+      <div className="relative min-h-screen flex items-center px-5 sm:px-6 lg:px-16 xl:px-24 py-24">
+        {/* HUGE BG TEXT */}
+        <motion.h1
+          initial={{ opacity: 0, scale: 0.8 }}
+          whileInView={{ opacity: 0.05, scale: 1 }}
+          transition={{ duration: 1.4 }}
+          viewport={{ once: true }}
+          className="
+            absolute
+            top-10
+            left-1/2
+            -translate-x-1/2
+            font-black
+            tracking-[0.2em]
+            text-white
+            pointer-events-none
+            whitespace-nowrap
+            text-[80px]
+            sm:text-[120px]
+            md:text-[180px]
+            lg:text-[260px]
+          "
+        >
+          ABOUT
+        </motion.h1>
 
-        {/* BIG BACKGROUND TEXT */}
-        <h1 className="absolute top-6 left-2 md:left-6 lg:left-10 text-[60px] sm:text-[90px] md:text-[150px] lg:text-[180px] xl:text-[220px] font-black text-white/10 leading-none select-none">
-          OM
-        </h1>
-
-        <div className="grid lg:grid-cols-2 gap-14 xl:gap-20 items-center relative z-10">
-
-          {/* LEFT CONTENT */}
+        <div className="grid lg:grid-cols-2 gap-16 xl:gap-24 items-center relative z-10 w-full">
+          {/* LEFT */}
           <motion.div
-            initial={{ opacity: 0, y: 80 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="show"
             viewport={{ once: true }}
             className="max-w-2xl"
           >
-            <p className="uppercase tracking-[0.25em] text-xs sm:text-sm text-white/60 mb-5">
+            <p className="uppercase tracking-[0.3em] text-xs sm:text-sm text-blue-200/60 mb-6">
               Graphic Designer & Video Editor
             </p>
 
-            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[90px] xl:text-[105px] font-black leading-[0.9] tracking-tight text-white">
+            <h1
+              className="
+                text-5xl
+                sm:text-6xl
+                md:text-7xl
+                lg:text-[85px]
+                xl:text-[95px]
+                font-black
+                leading-[0.9]
+                tracking-tight
+              "
+            >
               OM
-              <span className="block italic font-light text-white/70">
+              <span className="block italic font-light text-blue-100/70">
                 GAIKWAD
               </span>
             </h1>
 
-            <p className="mt-8 text-base sm:text-lg lg:text-xl text-white/60 leading-relaxed max-w-xl">
-              I create bold visuals, cinematic edits, and modern brand
-              identities that help businesses stand out with emotion and style.
-            </p>
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ delay: 0.3, duration: 1 }}
+              viewport={{ once: true }}
+              className="
+                mt-8
+                text-base
+                sm:text-lg
+                lg:text-xl
+                text-white/65
+                leading-relaxed
+                max-w-xl
+              "
+            >
+              I create cinematic visuals, modern branding, and engaging digital
+              experiences that help businesses stand out with emotion,
+              storytelling, and creativity.
+            </motion.p>
+
+            {/* STATS */}
+            <div className="grid grid-cols-3 gap-5 mt-12">
+              {[
+                ["2+", "Years"],
+                ["40+", "Projects"],
+                ["10+", "Clients"],
+              ].map((item, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.2 }}
+                  viewport={{ once: true }}
+                  className="
+                    border border-white/10
+                    bg-white/5
+                    backdrop-blur-xl
+                    rounded-2xl
+                    p-5
+                    hover:bg-white/10
+                    transition duration-500
+                  "
+                >
+                  <h2 className="text-3xl sm:text-4xl font-black">
+                    {item[0]}
+                  </h2>
+
+                  <p className="text-sm text-white/60 mt-2">{item[1]}</p>
+                </motion.div>
+              ))}
+            </div>
 
             {/* CLIENTS */}
-            <div className="mt-12">
-              <p className="uppercase text-xs sm:text-sm tracking-[0.25em] text-white/60 mb-5">
+            <div className="mt-14">
+              <p className="uppercase tracking-[0.25em] text-xs text-white/40 mb-5">
                 Selected Clients
               </p>
 
-              <div className="space-y-3">
-                {["Oscarr Pizza", "Culinary Karma", "Jaamun Tree"].map(
-                  (item, i) => (
-                    <motion.div
-                      key={i}
-                      initial={{ opacity: 0, x: -40 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ delay: i * 0.2 }}
-                      viewport={{ once: true }}
-                      className="text-xl sm:text-2xl lg:text-3xl font-semibold text-white/60 hover:text-white transition duration-300"
-                    >
-                      {item}
-                    </motion.div>
-                  )
-                )}
+              <div className="space-y-4">
+                {[
+                  "Oscarr Pizza",
+                  "Culinary Karma",
+                  "Jaamun Tree",
+                ].map((item, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, x: -50 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.2 }}
+                    viewport={{ once: true }}
+                    className="
+                      text-2xl
+                      lg:text-3xl
+                      font-semibold
+                      text-white/50
+                      hover:text-white
+                      hover:translate-x-2
+                      transition-all
+                      duration-500
+                    "
+                  >
+                    {item}
+                  </motion.div>
+                ))}
               </div>
             </div>
           </motion.div>
 
           {/* RIGHT IMAGE */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1 }}
+            variants={slideLeft}
+            initial="hidden"
+            whileInView="show"
             viewport={{ once: true }}
-            className="relative mt-10 lg:mt-0 flex justify-center lg:justify-end"
+            className="relative flex justify-center lg:justify-end"
           >
-            <div className="overflow-hidden rounded-2xl w-full max-w-[320px] sm:max-w-[420px] md:max-w-[520px] lg:max-w-[580px] xl:max-w-[650px]">
-              <img
+            {/* GLOW */}
+          
+
+            <div
+              className="
+                relative
+                overflow-hidden
+                rounded-[32px]
+                border
+                border-white/10
+                shadow-2xl
+                w-full
+                max-w-[360px]
+                sm:max-w-[460px]
+                lg:max-w-[540px]
+              "
+            >
+              <motion.img
+                whileHover={{ scale: 1.06 }}
+                transition={{ duration: 0.8 }}
                 src="/me.jpg"
                 alt="Om Gaikwad"
-                className="w-full h-[55vh] sm:h-[65vh] lg:h-[75vh] xl:h-[80vh] object-cover  hover:grayscale-0 transition duration-700"
+                className="
+                  w-full
+                  h-[60vh]
+                  sm:h-[70vh]
+                  lg:h-[78vh]
+                  object-cover
+                "
               />
             </div>
 
-           
+            {/* FLOAT CARD */}
+            <motion.div
+              initial={{ opacity: 0, y: 80 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 1 }}
+              viewport={{ once: true }}
+              className="
+                absolute
+                bottom-6
+                -left-4
+                sm:left-0
+                lg:-left-12
+                bg-white/10
+                backdrop-blur-2xl
+                border
+                border-white/10
+                rounded-2xl
+                p-5
+                max-w-[240px]
+              "
+            >
+              <p className="uppercase tracking-[0.25em] text-xs text-white/50">
+                Experience
+              </p>
+
+              <h2 className="text-4xl font-black mt-2">2+</h2>
+
+              <p className="text-sm text-white/60 mt-3 leading-relaxed">
+                Years creating visuals, edits, and digital experiences.
+              </p>
+            </motion.div>
           </motion.div>
         </div>
       </div>
 
-      {/* STORY SECTION */}
-      <div className="px-5 sm:px-6 lg:px-16 xl:px-24 py-24 lg:py-32 border-t border-white/10">
-        <div className="max-w-6xl">
-
-          <p className="uppercase tracking-[0.25em] text-white/50 text-xs sm:text-sm mb-8">
+      {/* PHILOSOPHY */}
+      <div className="relative px-5 sm:px-6 lg:px-16 xl:px-24 py-24 lg:py-32 border-t border-white/10">
+        <motion.div
+          initial={{ opacity: 0, y: 90 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+          viewport={{ once: true }}
+          className="max-w-6xl"
+        >
+          <p className="uppercase tracking-[0.3em] text-xs text-white/40 mb-8">
             Philosophy
           </p>
 
-          <motion.h2
-            initial={{ opacity: 0, y: 80 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
-            viewport={{ once: true }}
-            className="text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-black leading-tight text-white"
+          <h2
+            className="
+              text-4xl
+              sm:text-5xl
+              lg:text-6xl
+              xl:text-7xl
+              font-black
+              leading-tight
+            "
           >
             Design should
-            <span className="block italic font-light text-white/70">
+            <span className="block italic font-light text-white/60">
               make people feel something.
             </span>
-          </motion.h2>
+          </h2>
 
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ delay: 0.3, duration: 1 }}
-            viewport={{ once: true }}
-            className="mt-10 text-lg sm:text-xl lg:text-2xl text-white/70 leading-relaxed lg:leading-loose max-w-5xl font-light"
+          <p
+            className="
+              mt-10
+              text-lg
+              sm:text-xl
+              lg:text-2xl
+              text-white/60
+              leading-relaxed
+              lg:leading-loose
+              max-w-5xl
+            "
           >
-            My work blends storytelling, movement, typography, and emotion to
-            create visuals that connect deeply with audiences. Whether it’s a
-            restaurant brand, social media campaign, or cinematic reel — I aim
-            to build experiences that people remember.
-          </motion.p>
-        </div>
+            My work blends storytelling, typography, visuals, and movement to
+            create experiences people remember. Whether it’s a brand campaign,
+            cinematic reel, or social media design — every detail is built with
+            emotion and intention.
+          </p>
+        </motion.div>
       </div>
 
-      {/* SKILLS SECTION */}
-      <div className="relative px-5 sm:px-6 lg:px-16 xl:px-24 py-24 lg:py-32 overflow-hidden border-t border-white/10">
-
-        {/* BACKGROUND TEXT */}
-        <h1 className="absolute top-6 left-0 text-[60px] sm:text-[100px] md:text-[160px] lg:text-[220px] xl:text-[250px] font-black text-white/10 leading-none select-none">
-          SKILLS
-        </h1>
-
-        {/* TOP CONTENT */}
-        <div className="relative z-10 flex flex-col lg:flex-row lg:items-end lg:justify-between gap-10 mb-20">
-
-          <div>
-            <p className="uppercase tracking-[0.25em] text-white/50 text-xs sm:text-sm mb-5">
-              Expertise
-            </p>
-
-            <h2 className="text-4xl sm:text-5xl lg:text-7xl xl:text-8xl font-black leading-[0.9] tracking-tight text-white">
-              Creative
-              <span className="block italic font-light text-white/70">
-                Capabilities
-              </span>
-            </h2>
-          </div>
-
-          <p className="max-w-md text-white/50 text-base lg:text-lg leading-relaxed">
-            Focused on building modern visuals, cinematic edits, and impactful
-            digital experiences that elevate brands with emotion and clarity.
+      {/* SKILLS */}
+      <div className="relative px-5 sm:px-6 lg:px-16 xl:px-24 py-24 lg:py-32 border-t border-white/10">
+        <motion.div
+          initial={{ opacity: 0, y: 70 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+          viewport={{ once: true }}
+        >
+          <p className="uppercase tracking-[0.3em] text-xs text-white/40 mb-6">
+            Expertise
           </p>
-        </div>
 
-        {/* SKILLS LIST */}
-        <div className="py-16 border-t border-white/10">
+          <h2
+            className="
+              text-4xl
+              sm:text-5xl
+              lg:text-6xl
+              xl:text-7xl
+              font-black
+              leading-[0.95]
+            "
+          >
+            Creative
+            <span className="block italic font-light text-white/60">
+              Skills
+            </span>
+          </h2>
+        </motion.div>
 
-          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-14">
-
-            <div>
-              <p className="uppercase tracking-[0.25em] text-white/30 text-xs sm:text-sm mb-4">
-                Expertise
-              </p>
-
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black leading-tight text-white">
-                Creative
-                <span className="block italic font-light text-white/40">
-                  Skills
-                </span>
-              </h2>
-            </div>
-
-            <p className="max-w-sm text-white/40 leading-relaxed text-sm sm:text-base">
-              Blending visuals, motion, and storytelling to create modern digital
-              experiences.
-            </p>
-          </div>
-
-          {/* SKILLS */}
-          <div className="grid lg:grid-cols-2 gap-x-16 gap-y-8">
-            {[
-              "Brand Identity",
-              "Graphic Design",
-              "Video Editing",
-              "Social Media Design",
-              "Creative Direction",
-            ].map((skill, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: i * 0.1 }}
-                viewport={{ once: true }}
-                className="group border-b border-white/10 pb-4 flex items-center justify-between"
-              >
-                <h3 className="text-xl sm:text-2xl lg:text-3xl font-semibold text-white/70 group-hover:text-white transition duration-300">
+        <div className="grid lg:grid-cols-2 gap-8 mt-20">
+          {[
+            "Brand Identity",
+            "Graphic Design",
+            "Video Editing",
+            "Creative Direction",
+            "Social Media Design",
+            "Motion Graphics",
+          ].map((skill, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 60 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.12, duration: 0.8 }}
+              viewport={{ once: true }}
+              whileHover={{ y: -8 }}
+              className="
+                group
+                p-7
+                rounded-3xl
+                border
+                border-white/10
+                bg-white/[0.03]
+                hover:bg-white/[0.06]
+                transition-all
+                duration-500
+              "
+            >
+              <div className="flex items-center justify-between">
+                <h3 className="text-2xl lg:text-3xl font-semibold text-white/75 group-hover:text-white transition">
                   {skill}
                 </h3>
 
-                <span className="text-white/20 group-hover:text-white transition duration-300 text-sm sm:text-base">
+                <span className="text-white/30 text-lg font-medium">
                   0{i + 1}
                 </span>
-              </motion.div>
-            ))}
-          </div>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
