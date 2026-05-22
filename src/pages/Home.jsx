@@ -84,7 +84,7 @@ const Home = () => {
               key={i}
               href={`#${item.toLowerCase()}`}
               onClick={() => setMenuOpen(false)}
-              className="text-3xl font-bold uppercase tracking-[0.2em] hover:text-gray-300 transition"
+              className="text-2xl  font-bold uppercase tracking-[0.2em] hover:text-gray-300 transition"
             >
               {item}
             </a>
