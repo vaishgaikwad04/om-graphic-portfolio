@@ -53,7 +53,7 @@ const Home = () => {
         >
           <button
             onClick={() => setMenuOpen(false)}
-            className="absolute top-6 right-6 text-2xl text-white z-[120]"
+            className="absolute top-6 right-6 text-3xl text-white z-[120]"
           >
             <HiX />
           </button>
@@ -63,7 +63,7 @@ const Home = () => {
               key={i}
               href={`#${item.toLowerCase()}`}
               onClick={() => setMenuOpen(false)}
-              className="text-2xl font-bold uppercase tracking-[0.2em] hover:text-red-300"
+              className="text-3xl font-bold uppercase tracking-[0.2em] hover:text-red-300 transition duration-300"
             >
               {item}
             </a>
@@ -71,50 +71,44 @@ const Home = () => {
         </motion.div>
       )}
 
-      {/* LEFT TEXT (FIXED ALIGNMENT ONLY) */}
-      <motion.div
-        initial={{ opacity: 0, x: -60 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 1 }}
-        className="absolute top-1/2 left-10 -translate-y-1/2 text-white z-20"
-      >
-        <h2 className="italic text-xl opacity-80 ml-164 mb-74">Hey I'm</h2>
-      </motion.div>
+      {/* LEFT TEXT */}
+      
 
-      {/* BACKGROUND NAME */}
+      {/* BACKGROUND TEXT */}
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         whileInView={{ opacity: 0.1, scale: 1 }}
         transition={{ duration: 1.5 }}
-className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 text-white opacity-10 font-extrabold tracking-widest text-[70px] sm:text-[100px] md:text-[120px] lg:text-[140px]">        DESIGN
+        className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 text-white opacity-10 font-extrabold tracking-widest text-[70px] sm:text-[100px] md:text-[120px] lg:text-[140px]"
+      >
+        DESIGN
       </motion.div>
 
-      {/* MAIN TEXT (FIXED ONLY) */}
+      {/* MAIN TEXT */}
       <motion.h1
         initial={{ opacity: 0, y: 80 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 1.2 }}
-        className="text-white tracking-tight text-center sm:text-left sm:ml-6 md:ml-0 text-7xl md:text-9xl font-extrabold z-10 px-4 leading-[0.95] sm:translate-x-6"
+        className="text-white tracking-tight text-center text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-extrabold z-10 px-4 leading-[0.9]"
       >
         Creative <br />
-        <span className="font-light text-5xl md:text-7xl italic">
+        <span className="font-light text-4xl sm:text-5xl md:text-6xl lg:text-7xl italic">
           Visual
         </span>{" "}
         Designer
       </motion.h1>
 
-      {/* IMAGE (FIXED ALIGNMENT ONLY) */}
+      {/* IMAGE */}
       <motion.div
         initial={{ opacity: 0, x: 100 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 1.2 }}
-        className="absolute bottom-0 right-12 translate-y-4 sm:translate-y-6"
+        className="absolute bottom-0 right-0 sm:right-6 md:right-10 translate-y-2 md:translate-y-4"
       >
         <img
-          className="w-[280px] sm:w-[400px] md:w-[600px] lg:w-[800px] xl:w-[900px] object-cover rounded-xl hover:scale-105 transition duration-700"
+          className="w-[260px] sm:w-[340px] md:w-[500px] lg:w-[700px] xl:w-[780px] object-cover rounded-xl hover:scale-105 transition duration-700"
           src="./profile.png"
           alt="designer visual"
         />

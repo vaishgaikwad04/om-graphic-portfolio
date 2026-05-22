@@ -10,12 +10,12 @@ const Contact = () => {
       <div className="max-w-3xl w-full text-center animate-container">
 
         {/* Heading */}
-        <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight leading-tight animate-title">
+        <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-tight animate-title">
           Let’s Work Together
         </h1>
 
         {/* Sub text */}
-        <p className="text-white/60 max-w-xl mt-8 text-lg leading-relaxed mx-auto animate-fade delay-100">
+        <p className="text-white/60 max-w-xl mt-6 text-base sm:text-lg leading-relaxed mx-auto animate-fade delay-100 px-2">
           Open for freelance projects, branding, and creative collaborations.
           Let’s build something meaningful together.
         </p>
@@ -24,7 +24,7 @@ const Contact = () => {
         <div className="w-20 h-[1px] bg-white/20 my-14 mx-auto animate-fade delay-200"></div>
 
         {/* ICONS */}
-        <div className="flex items-center justify-center gap-14 text-white/60">
+        <div className="flex items-center justify-center gap-8 sm:gap-4 text-white/60">
 
           {/* Email */}
           <a

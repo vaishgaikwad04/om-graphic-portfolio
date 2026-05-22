@@ -4,13 +4,7 @@ const Work = () => {
   const [selectedImage, setSelectedImage] = useState(null);
 
   const projects = [
-    {
-      name: "Jaamun Tree",
-      type: "Branding / Social Media",
-      media: "image",
-      src: "/two.png",
-      poster: "jamoon",
-    },
+  
     {
       name: "Oscar Pizza",
       type: "Reels Editing",
@@ -46,13 +40,13 @@ const Work = () => {
           Selected Work
         </p>
 
-        <h1 className="text-3xl md:text-6xl font-extrabold mt-4 animate-soft-glow text-gray-500">
+        <h1 className="text-2xl sm:text-4xl md:text-6xl font-extrabold mt-4 animate-soft-glow text-gray-400">
          Recent Work
         </h1>
       </div>
 
       {/* GRID */}
-      <div className="columns-1 md:columns-2 gap-8 space-y-8">
+      <div className="columns-1 md:columns-2 gap-5 md:gap-8 space-y-5 md:space-y-8">
         {projects.map((project, index) => (
           <div
             key={index}
@@ -76,7 +70,7 @@ const Work = () => {
                   className={`
                     w-full cursor-pointer object-cover transition-all duration-700 ease-out
                     group-hover:scale-[1.06]
-                    ${index % 2 === 0 ? "h-[890px]" : "h-[860px]"}
+                 h-[420px] sm:h-[520px] md:h-[700px] lg:h-[860px]
                   `}
                 />
               ) : (
@@ -88,7 +82,7 @@ const Work = () => {
                     w-full object-cover bg-black
                     transition-all duration-700 ease-out
                     group-hover:brightness-110 group-hover:scale-[1.02]
-                    ${index % 2 === 0 ? "h-[790px]" : "h-[760px]"}
+                   h-[420px] sm:h-[520px] md:h-[650px] lg:h-[760px]
                   `}
                 >
                   <source src={project.src} type="video/mp4" />
@@ -97,7 +91,7 @@ const Work = () => {
             </div>
 
             {/* OVERLAY */}
-            <div className="absolute bottom-0 left-0 p-8 opacity-0 translate-y-6 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500" />
+            <div className="absolute bottom-0 left-0 p-4 sm:p-6 md:p-8 opacity-0 translate-y-6 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500" />
           </div>
         ))}
       </div>
