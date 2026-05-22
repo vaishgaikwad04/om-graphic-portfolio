@@ -68,7 +68,7 @@ const Work = () => {
   return (
     <div
       id="work"
-      className="min-h-screen bg-gray-200 text-black px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24 py-16 lg:py-24 overflow-hidden"
+      className="min-h-screen bg-white text-black px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24 py-16 lg:py-24 overflow-hidden"
     >
       {/* HEADER */}
       <div className="mb-12 lg:mb-16 animate-fade-down">
